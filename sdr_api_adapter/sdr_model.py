@@ -58,12 +58,12 @@ class SDR_Model:
 
     def set_tx_mode(self):
         if self.sdr:
-            self.sdr.output_index = 1
-            self.sdr.input_index = 1
+            self.sdr.set_output_index(1)
+            self.sdr.set_input_index(1)
 
     def set_rx_mode(self):
         if self.sdr:
-            self.sdr.output_index = 0
-            self.sdr.input_index = 0
+            self.sdr.set_output_index(0)
+            self.sdr.set_input_index(0)
 
 sdr = SDR_Model()

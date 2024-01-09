@@ -16,6 +16,8 @@ class SDR_Model:
 
     def set_rx_handler(self, rx_handler: Callable):
         self.rx_handler = rx_handler
+        if self.sdr:
+            self.sdr.epy_block_1.rx_handler = rx_handler
 
     def get_config(self):
         return self._kwargs
@@ -32,9 +34,10 @@ class SDR_Model:
             return
         if self.sdr_class:
             self.sdr = self.sdr_class(**self._kwargs)
-            if self.rx_handler:
-                self.sdr.rx_msg_handler.subscribe(self.rx_msg_handler)
-                self.sdr.received.subscribe(self.rx_handler)
+            self.sdr.epy_block_1.rx_handler = self.rx_handler
+            # if self.rx_handler:
+            #     self.sdr.rx_msg_handler.subscribe(self.rx_msg_handler)
+            #     self.sdr.received.subscribe(self.rx_handler)
         else:
             return
 
@@ -51,9 +54,10 @@ class SDR_Model:
             if not self.sdr_class:
                 return
             self.sdr = self.sdr_class(**self._kwargs)
-            if self.rx_handler:
-                self.sdr.rx_msg_handler.subscribe(self.rx_msg_handler)
-                self.sdr.received.subscribe(self.rx_handler)
+            self.sdr.epy_block_1.rx_handler = self.rx_handler
+            # if self.rx_handler:
+            #     self.sdr.rx_msg_handler.subscribe(self.rx_msg_handler)
+            #     self.sdr.received.subscribe(self.rx_handler)
             self.start()
 
     def set_tx_mode(self):

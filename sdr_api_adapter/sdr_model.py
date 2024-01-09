@@ -41,12 +41,12 @@ class SDR_Model:
             return
 
         self.sdr.start()
-        self.sdr.wait()
 
     def stop(self) -> None:
         if self._running_flag and self.sdr:
             self.sdr.stop()
             self.sdr.wait()
+            self.sdr = None
 
     def restart(self) -> None:
         if self._running_flag:

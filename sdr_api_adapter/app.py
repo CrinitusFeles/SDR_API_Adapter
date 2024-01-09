@@ -14,4 +14,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-uvicorn.run(app, host="0.0.0.0", port=80)
+
+def main():
+    uvicorn.run(app, host="0.0.0.0", port=80)

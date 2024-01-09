@@ -29,3 +29,11 @@ async def stop() -> None:
 @router.post('/restart')
 async def restart() -> None:
     return sdr.restart()
+
+@router.post('/set_tx_mode')
+async def set_tx_mode() -> None:
+    return sdr.set_tx_mode()
+
+@router.post('/set_rx_mode')
+async def set_rx_mode() -> None:
+    return sdr.set_rx_mode()

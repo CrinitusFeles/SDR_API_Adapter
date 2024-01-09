@@ -56,4 +56,14 @@ class SDR_Model:
                 self.sdr.received.subscribe(self.rx_handler)
             self.start()
 
+    def set_tx_mode(self):
+        if self.sdr:
+            self.sdr.output_index = 1
+            self.sdr.input_index = 1
+
+    def set_rx_mode(self):
+        if self.sdr:
+            self.sdr.output_index = 0
+            self.sdr.input_index = 0
+
 sdr = SDR_Model()

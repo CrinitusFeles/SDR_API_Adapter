@@ -3,10 +3,9 @@ from typing import Callable
 
 
 class SDR_Model:
-    def __init__(self, gr_sdr=None, *args, **kwargs) -> None:
-        self._args = args
+    def __init__(self, **kwargs) -> None:
         self._kwargs = kwargs
-        self.sdr_class = gr_sdr
+        self.sdr_class = None
         self.rx_handler = None
         self._running_flag = False
         self.sdr = None
@@ -19,10 +18,9 @@ class SDR_Model:
         self.rx_handler = rx_handler
 
     def get_config(self):
-        return self._args
+        return self._kwargs
 
-    def set_config(self, *args, **kwargs):
-        self._args = args
+    def set_config(self, **kwargs):
         self._kwargs = kwargs
 
     def send(self, data: bytes) -> None:
@@ -33,7 +31,7 @@ class SDR_Model:
         if self._running_flag:
             return
         if self.sdr_class:
-            self.sdr = self.sdr_class(*self._args, **self._kwargs)
+            self.sdr = self.sdr_class(**self._kwargs)
             if self.rx_handler:
                 self.sdr.rx_msg_handler.subscribe(self.rx_msg_handler)
                 self.sdr.received.subscribe(self.rx_handler)
@@ -52,7 +50,7 @@ class SDR_Model:
             self.stop()
             if not self.sdr_class:
                 return
-            self.sdr = self.sdr_class(*self._args, **self._kwargs)
+            self.sdr = self.sdr_class(**self._kwargs)
             if self.rx_handler:
                 self.sdr.rx_msg_handler.subscribe(self.rx_msg_handler)
                 self.sdr.received.subscribe(self.rx_handler)

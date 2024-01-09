@@ -11,8 +11,8 @@ async def get_config():
     return sdr.get_config()
 
 @router.post('/send')
-async def send(data: bytes) -> None:
-    return sdr.send(data)
+async def send(data: str) -> None:
+    return sdr.send(data.encode('utf-8'))
 
 @router.get('/last_msg')
 async def get_last_msg():

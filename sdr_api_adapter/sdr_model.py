@@ -40,7 +40,7 @@ class SDR_Model:
         else:
             return
 
-        self.sdr.start()
+        self.sdr.run()
 
     def stop(self) -> None:
         if self._running_flag and self.sdr:

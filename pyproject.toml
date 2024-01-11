@@ -13,6 +13,8 @@ uvicorn = "^0.25.0"
 loguru = "^0.7.2"
 event = {git = "https://github.com/CrinitusFeles/Event.git"}
 python-dotenv = "^1.0.0"
+pyzmq = "^25.1.2"
+gnuradio-pmt = {git = "https://github.com/CrinitusFeles/gnuradio-pmt-python.git"}
 
 
 [build-system]
